@@ -2,6 +2,7 @@ from fastapi.responses import JSONResponse
 import requests
 from dotenv import load_dotenv
 import os
+from app.model.event import Event
 from app.model.market import Market
 
 class PolymarketGammaClient:
@@ -17,6 +18,11 @@ class PolymarketGammaClient:
         response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
-            return [Market(**market) for market in data]
+            markets = []
+            for market in data:
+                if 'events' in market:
+                    market['events'] = [Event(**event) for event in market['events']]
+                markets.append(Market(**market))
+            return markets
         else:
             return Exception("Failed to fetch market data")
