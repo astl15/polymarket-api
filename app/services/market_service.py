@@ -8,5 +8,8 @@ class MarketService:
         self.repository = repository
 
     def get_markets(self):
-        print("Service")
         return self.repository.get_markets()
+    
+    def get_market(self, market_id: str):
+        params = {"id": market_id}
+        return self.repository.get_markets(params=params)

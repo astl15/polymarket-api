@@ -11,3 +11,7 @@ router = APIRouter()
 def get_markets(service: MarketService = Depends()):
         return service.get_markets()
 
+@router.get(MARKETS_PREFIX + "/{id}")
+def get_market(id: str, service: MarketService = Depends()):
+    return service.get_market(id)
+

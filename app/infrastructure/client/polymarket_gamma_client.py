@@ -13,9 +13,9 @@ class PolymarketGammaClient:
         self.markets_prefix = "/markets"
 
 
-    def get_markets(self):
+    def get_markets(self, params=None):
         url = self.base_url + self.markets_prefix
-        response = requests.get(url)
+        response = requests.get(url, params=params)
         if response.status_code == 200:
             data = response.json()
             markets = []
