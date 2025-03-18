@@ -3,3 +3,4 @@ uvicorn
 pydantic
 requests
 dotenv
+py-clob-client
